@@ -6,8 +6,8 @@ import (
 )
 
 type user struct {
-	First string
-	Age   int
+	First string `json:"first_name"`
+	Age   int    `json:"age"`
 }
 
 func main() {
