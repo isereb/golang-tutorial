@@ -26,7 +26,7 @@ func main() {
 	}
 
 	for k, v := range people {
-		fmt.Println("["+fmt.Sprint(k)+"]:", v)
+		fmt.Println(fmt.Sprint("[", k, "]:"), v)
 	}
 
 }
