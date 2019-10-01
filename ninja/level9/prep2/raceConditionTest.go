@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 )
 
@@ -16,6 +17,7 @@ func main() {
 		fmt.Println("START: Iteration: ", j, "Value:", counter)
 		go func() {
 			v := counter
+			runtime.Gosched()
 			v++
 			counter = v
 			wg.Done()
