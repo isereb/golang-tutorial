@@ -8,21 +8,25 @@ import (
 
 func main() {
 
-	amt := 100
+	const amt = 100
 	counter := 0
 
 	var wg sync.WaitGroup
 	wg.Add(amt)
+
+	var mx sync.Mutex
+
 	for j := 0; j < amt; j++ {
-		fmt.Println("START: Iteration: ", j, "Value:", counter)
 		go func() {
+			mx.Lock()
 			v := counter
 			runtime.Gosched()
 			v++
 			counter = v
+			mx.Unlock()
 			wg.Done()
 		}()
-		fmt.Println("END: Iteration: ", j, "Value:", counter)
 	}
 	wg.Wait()
+	fmt.Println(counter)
 }
